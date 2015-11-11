@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+<entry key="password">xxx</entry>
+<entry key="csvFile">veeva.csv</entry>
+<entry key="userName">xxx</entry>
+<entry key="documents">SELECT id, name__v, type__v FROM documents</entry>
+</properties>

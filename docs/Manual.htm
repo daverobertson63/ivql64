@@ -1,0 +1,453 @@
+﻿
+ 
+
+
+
+ 
+ 
+ 
+
+
+
+ 
+ 
+ <!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+ 
+ <meta name="ROBOTS" content="NOARCHIVE">
+ 
+ <link rel="icon" type="image/vnd.microsoft.icon" href="https://ssl.gstatic.com/codesite/ph/images/phosting.ico">
+ 
+ 
+ <link rel="canonical" href="https://code.google.com/p/cliche/wiki/Manual" />
+ 
+ 
+ <title>
+ Cliche Manual
+ 
+ </title>
+ <link type="text/css" rel="stylesheet" href="https://ssl.gstatic.com/codesite/ph/5825124916300507488/css/core.css">
+ 
+ <link type="text/css" rel="stylesheet" href="https://ssl.gstatic.com/codesite/ph/5825124916300507488/css/ph_detail.css" >
+ 
+ 
+ 
+ <link type="application/atom+xml" rel="alternate" href="/feeds/p/cliche/hgchanges/basic?path=/Manual.wiki&amp;repo=wiki">
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="https://ssl.gstatic.com/codesite/ph/5825124916300507488/css/d_ie.css" >
+<![endif]-->
+ <style type="text/css">
+ .menuIcon.off { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -42px }
+ .menuIcon.on { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -28px }
+ .menuIcon.down { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 0; }
+ 
+ 
+ #maincol {
+ padding-top: 0;
+ padding-bottom: 0;
+ }
+
+ 
+</style>
+</head>
+
+
+<body class="t6">
+
+<script type="text/javascript">
+ var cancelBubble = false;
+ function _go(url) { document.location = url; }
+</script>
+<div id="maincol">
+
+
+ <style type="text/css">
+ .delcom { background: #e8e8e8 }
+ .commentcontent {
+ margin: 2em;
+ padding: 0px 10px;
+ width: 66em;
+ }
+ .artifactcomment {
+ border-top: 3px solid #c3d9ff;
+ }
+ #commentform {
+ border-top: 3px solid #c3d9ff;
+ }
+ </style>
+
+<div id="wikipage">
+<table>
+ <tr>
+ 
+ 
+ <td style="vertical-align:top; padding-left:5px">
+ 
+ <div id="wikiheader">
+ 
+ <span style="font-size:120%;font-weight:bold">Manual</span>
+ &nbsp;
+ <div> 
+ 
+ <i>Short but almost complete manual</i>
+ 
+ 
+ <br/>
+ 
+ <a class="label" style="padding-top: 2px"
+ href="/p/cliche/w/list?q=label:Featured"
+ title="Listed on project home page"
+ >Featured</a>
+ 
+ 
+ 
+ <div id="wikiauthor" style="float:right">
+ Updated <span title="Tue May  8 20:05:55 2012">
+ May 8, 2012</span>
+ 
+ by 
+
+ <a class="userlink"
+ href="/u/103257688332457248920/">ans...@gmail.com</a
+>
+ 
+ </div>
+ </div>
+ </div>
+ 
+ <div id="wikicontent">
+ <div class="vt" id="wikimaincol">
+ <h1><a name="Cliche_Command-Line_Shell"></a>Cliche Command-Line Shell<a href="#Cliche_Command-Line_Shell" class="section_anchor"></a></h1><h2><a name="Manual"></a>Manual<a href="#Manual" class="section_anchor"></a></h2><h3><a name="About_the_document"></a>About the document<a href="#About_the_document" class="section_anchor"></a></h3><p>This is the most detailed instruction on Cliche. Here I&#x27;ll describe major aspects of using Cliche library from the developer&#x27;s viewpoint. </p><p><strong>Note:</strong> I don&#x27;t worry much about backward compatibility, but I&#x27;ll try to emphasize things that will likely be changed. </p><h3><a name="Why_is_Cliche_worth_considering?"></a>Why is Cliche worth considering?<a href="#Why_is_Cliche_worth_considering?" class="section_anchor"></a></h3><p>Cliche is a small (under 100 kilobytes, <strong>no</strong> dependencies),  Java library enabling <strong>really</strong> simple creation of CLIs (CLI stands for &quot;command-line user interface&quot; throughout all Cliche docs.) </p><p><strong>How simple?</strong> <i>So simple:</i> </p><pre class="prettyprint">package asg.cliche.sample;
+
+import asg.cliche.Command;
+import asg.cliche.ShellFactory;
+import java.io.IOException;
+
+public class HelloWorld {
+
+    @Command // One,
+    public String hello() {
+        return &quot;Hello, World!&quot;;
+    }
+
+    @Command // two,
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) throws IOException {
+        ShellFactory.createConsoleShell(&quot;hello&quot;, &quot;&quot;, new HelloWorld())
+            .commandLoop(); // and three.
+    }
+}</pre><p><i>Three additional lines of code!</i> More precisely, one per each method to be available to user, and one &quot;magic phrase&quot; to run the Shell. Well, that should produce really crappy UI... </p><pre class="prettyprint">hello&gt; ?list
+abbrev	name	params
+a	add	(p1, p2)
+h	hello	()
+hello&gt; hello
+Hello, World!
+hello&gt; ?help add
+Command: add
+Abbrev:  a
+Params:  (p1, p2)
+Description: add(p1:int, p2:int) : int
+Number of parameters: 2
+p1	int	
+p2	int	
+
+
+hello&gt; add 45 34
+79
+hello&gt; a 45 34
+79
+hello&gt; exit</pre><p>Not so bad, I suppose. As you should have noticed, there are some &quot;builtin&quot; commands, such as <tt>?list</tt>, they are prefixed with some special symbol, e.g. <tt>?</tt> or <tt>!</tt>. </p><p>This library proved to be very helpful in experimenting with new code. E.g. you&#x27;ve spent an hour writing new algorithm and want to quickly test it. Instead of spending another hour on writing any kind of UI, you just add a couple of annotation and that magic line and hit Shift+F6, and quickly learn how that code works. Or you&#x27;ve got a third-party library and want to test it &quot;hands on&quot;. </p><p>Personally I am very happy that I have Cliche, because now I&#x27;m experimenting with algorithms a lot, and I spend <strong>no</strong> time constructing the UI. </p><p>Or there may be &quot;real&quot; applications, since the very core functionality of it, i.e. type conversion and object output, is easily extensible. And it supports subshells, that give us the important ability to navigate through tree-like structures. </p><p>One more use case is when you have rather complicated system, say, MVC-style webapp, and you want to give the sysadmin full control over the model, but it&#x27;s too expensive to build a web admin panel for only one man... Then you&#x27;ll probably just have to write a simple Main class and maybe some type converters in the worst case. </p><p>In many cases we prefer simplicity, and I don&#x27;t think there&#x27;s simpler UI framework for Java. </p><h3><a name="Simplest_usage"></a>Simplest usage<a href="#Simplest_usage" class="section_anchor"></a></h3><p>As in previous example, sometimes the only thing you need is to mark methods with <tt>@Command</tt> and run the <tt>commandLoop()</tt>. </p><p>Now let&#x27;s be precise. Parameter type conversion is performed automatically only for primitive types, their boxed equivalents (i.e. <tt>Integer</tt>) and strings. Output is supported for primitives, arrays, collections and anything with meaningful <tt>toString()</tt>. Of course you can override conversion algorithm for any type. More on this later. </p><p>Varargs functions are supported. Method overloading generally doesn&#x27;t work, except in the case when number of parameters is different: command is characterized by its name and arity (number of parameters). </p><p>That &quot;magic phrase&quot; should be explained in detail. </p><pre class="prettyprint">public static Shell ShellFactory.createConsoleShell(
+    String pathElement, String hint, Object... handlers) {</pre><p><dl> <blockquote><dt><pre class="prettyprint">pathElement</pre></dt> 
+<dd>Think of it as of text displayed in the command prompt. This parameter makes a lot more sense when you use subshells.</dd> 
+<dt><pre class="prettyprint">hint</pre></dt> 
+<dd>Shell&#x27;s hint is some text that is displayed upon startup and every time user enters <tt>?</tt> command. It may be used instead of &#x27;about&#x27; command.</dd> 
+<dt><pre class="prettyprint">handlers</pre></dt> 
+<dd>Handlers are objects whose annotated methods are to be turned into commands. All commands resulted from this parameter are in the same namespace (are placed as-is.)</dd> 
+</blockquote></dl> </p><h3><a name="Documenting_commands"></a>Documenting commands<a href="#Documenting_commands" class="section_anchor"></a></h3><p>Descriptions like <tt>add(p1:int, p2:int) : int</tt> are all right if you&#x27;re the only person working with the program, but in other cases (and sometimes in this case, too) it&#x27;s better to document the UI. </p><p>This is extremely easy when you have already written javadoc comments. Suppose you have: </p><pre class="prettyprint">/**
+ * Command description
+ * @param param1 Description of param1
+ * @param param2 Description of param2
+ */
+public int someCommand(int param1, int param2) {
+    . . .
+}</pre><p>To make it well-documented command you transform these comments into annotation parameters: </p><pre class="prettyprint">@Command(description=&quot;Command description&quot;)
+public int someCommand(
+    @Param(name=&quot;param1&quot;, description=&quot;Description of param1&quot;)
+        int param1,
+    @Param(name=&quot;param2&quot;, description=&quot;Description of param2&quot;)
+        int param2) {
+    . . .
+}</pre><p>And this command appears in the list as follows: </p><pre class="prettyprint">hello&gt; ?l
+abbrev	name	params
+a	add	(p1, p2)
+sc	some-command	(param1, param2)
+h	hello	()
+hello&gt; ?help some-command
+Command: some-command
+Abbrev:  sc
+Command description
+This command has 2 parameter(s):
+param1	int	Description of param1
+param2	int	Description of param2
+
+
+hello&gt; exit</pre><p>All builtin commands are documented exactly in this manner. </p><pre class="prettyprint">hello&gt; ?help ?help
+Command: ?help
+Abbrev:  ?h
+Shows detailed info on all commands with given name
+This command has 1 parameter(s):
+command-name	String	Command name you want help on
+
+Command: ?help
+Abbrev:  ?h
+Shows info on using the UI
+This command has no arguments.
+
+hello&gt; exit</pre><h3><a name="Naming_commands"></a>Naming commands<a href="#Naming_commands" class="section_anchor"></a></h3><p>Sometimes you don&#x27;t like auto-generated name or abbreviation or want to avoid conflicts due to method overloading. In such cases use <tt>name</tt> and/or <tt>abbrev</tt> parameters of <tt>@Command</tt>: </p><pre class="prettyprint">@Command(name=&quot;list&quot;, abbreviation=&quot;ls&quot;)
+public List listFiles() { . . . }</pre><p>Or, maybe, you don&#x27;t like the way the method names are transformed into commands? Say, you want <tt>someMethod</tt> to become not <tt>some-method</tt>, but <tt>Some_Method</tt> (you&#x27;ve coded a lot in Ada, right?) Then it probably won&#x27;t be a problem for you to create new <tt>CommandNamer</tt> implementation and then assemble your shell like <tt>ShellFactory</tt> does. In fact, this is rather simple, there&#x27;s even <tt>Strings</tt> class that has a method for breaking javaCase identifiers into words. <tt>svn checkout</tt>. </p><p>Also note that by default <tt>cmdSomeCommand</tt> and <tt>cliSomeCommand</tt> are becoming <tt>some-command</tt>. I recommend that you use this naming convention for purely UI methods, existing solely for <tt>@Command</tt>&#x27;s sake. As always, if you don&#x27;t like this behavior, set <tt>@Command(name=...)</tt>, which is always accepted as-is (you may even use spaces in that name, though that command would become inaccessible.) </p><h3><a name="The_Help_System"></a>The Help System<a href="#The_Help_System" class="section_anchor"></a></h3><p>There are three help commands: <tt>?list</tt>, <tt>?list-all</tt> and <tt>?help</tt>. Let Shell explain them. </p><pre class="prettyprint">hello&gt; ?h ?list
+Command: ?list
+Abbrev:  ?l
+Lists all commands with no prefix
+This command has no arguments.
+Command: ?list
+Abbrev:  ?l
+Lists all available commands starting with given string
+This command has 1 parameter(s):
+startsWith	String	Pattern to show commands starting with
+
+
+hello&gt; ?h ?list-all
+Command: ?list-all
+Abbrev:  ?la
+Lists all commands
+This command has no arguments.
+
+hello&gt; ?h ?help
+Command: ?help
+Abbrev:  ?h
+Shows detailed info on all commands with given name
+This command has 1 parameter(s):
+command-name	String	Command name you want help on
+
+Command: ?help
+Abbrev:  ?h
+Shows info on using the UI
+This command has no arguments.
+
+hello&gt; ?l
+abbrev	name	params
+!el	!enable-logging	(fileName)
+!dl	!disable-logging	()
+!rs	!run-script	(filename)
+!gle	!get-last-exception	()
+!sdt	!set-display-time	(do-display-time)
+?l	?list	()
+?l	?list	(startsWith)
+?h	?help	()
+?h	?help	(command-name)
+?ghh	?generate-HTML-help	(file-name, include-prefixed)
+?la	?list-all	()
+a	add	(p1, p2)
+h	hello	()
+sc	some-command	(param1, param2)
+hello&gt; ?h
+This is Cliche shell (http://cliche.sourceforge.net/).
+To list all available commands enter ?list or ?list-all, the latter will also show you
+system commands. To get detailed info on a command enter ?help command-name.
+hello&gt; exit</pre><p>Sorry, I don&#x27;t know any good way to print big table to stdout, so it&#x27;s difficult to read. </p><p>Now let <strong>me</strong> explain them in short. </p><p>You enter <tt>?l part-of-command-name</tt> or <tt>?l</tt> or <tt>?la</tt>, find interesting name and enter <tt>?h that-name</tt>. That&#x27;s all you really need to know about the help system. </p><h3><a name="ShellDependent_and_ShellManageable"></a><tt>ShellDependent</tt> and <tt>ShellManageable</tt><a href="#ShellDependent_and_ShellManageable" class="section_anchor"></a></h3><p>These two interfaces are to be implemented when you want to be aware of some system CLI events. </p><p>An object implementing <tt>ShellDependent</tt> gains the ability to obtain a reference for Shell running it through a method <tt>void cliSetShell(Shell theShell)</tt>: </p><pre class="prettyprint">public class Tree implements ShellDependent {
+    . . .
+
+    private Shell theShell;
+
+    public void cliSetShell(Shell theShell) {
+        this.theShell = theShell;
+    }
+
+    . . .
+}</pre><p>In some cases you might want to know when Shell enters or exits the command loop. Then you might be interested in implementing <tt>ShellManageable</tt>: </p><pre class="prettyprint">public interface ShellManageable {
+
+    // This method is called when it is about to enter the command loop.
+    void cliEnterLoop();
+
+    // This method is called when Shell is leaving the command loop.
+    void cliLeaveLoop();
+}</pre><p>In such cases you are probably <tt>ShellDependent</tt> as well. </p><h3><a name="Subshells"></a>Subshells<a href="#Subshells" class="section_anchor"></a></h3><p>Subshells offer a way to navigate through tree-like structures. Here&#x27;s the example: </p><pre class="prettyprint">public class Tree implements ShellDependent {
+    
+    private String name;
+    
+    public Tree(String name) {
+        this.name = name;
+    }
+
+    private Tree left;
+    private Tree right;
+    
+    @Command
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    @Command
+    public String getName() {
+        return name;
+    }
+    
+    @Command
+    public void left() throws IOException {
+        if (left == null) {
+            left = new Tree(&quot;unnamed&quot;);
+        }
+        ShellFactory.createSubshell(left.name, theShell, &quot;Left&quot;, left)
+                .commandLoop();
+    }
+
+    @Command
+    public void right() throws IOException {
+        if (right == null) {
+            right = new Tree(&quot;unnamed&quot;);
+        }
+
+        // And then a miracle occurs...
+        ShellFactory.createSubshell(right.name, theShell, &quot;Right&quot;, right)
+                .commandLoop();
+    }
+
+    private Shell theShell;
+
+    public void cliSetShell(Shell theShell) {
+        this.theShell = theShell;
+    }
+
+    public static void main(String[] args) throws IOException {
+        ShellFactory.createConsoleShell(&quot;root&quot;, &quot;&quot;, new Tree(&quot;root&quot;))
+                .commandLoop();
+    }
+
+}</pre><p>You must be ShellDependent to create subshells, because <tt>createSubshell()</tt>, which is very similar to <tt>createConsoleShell()</tt>, wants you to give it the parent shell. </p><p>Here&#x27;s how it works from user&#x27;s perspective: </p><pre class="prettyprint">root&gt; ?l
+abbrev	name	params
+gn	get-name	()
+sn	set-name	(p1)
+l	left	()
+r	right	()
+root&gt; gn
+root
+root&gt; left
+Left
+root/unnamed&gt; sn A  # prompt won&#x27;t change immediately
+root/A/unnamed&gt;     # as it&#x27;s set upon creation.
+root/unnamed&gt; gn    # Although the name did change.
+A
+root/unnamed&gt; exit  # Use exit to navigate up.
+root&gt; right
+Right
+root/unnamed&gt; exit
+root&gt; left
+Left
+root/A&gt; right       # Now we see correct name at the prompt.
+Right
+root/A/unnamed&gt; set-name B
+root/A/unnamed&gt; exit
+root/A&gt; exit
+root&gt; left
+Left
+root/A&gt; left
+Left
+root/A/unnamed&gt; exit
+root/A&gt; right
+Right
+root/A/B&gt; exit  # Wouldn&#x27;t it be nice if there were
+root/A&gt; exit    # &quot;exit-all&quot; command?
+root&gt; exit      # Unfortunately, that&#x27;s not so easy.</pre><h3><a name="Converters"></a>Converters<a href="#Converters" class="section_anchor"></a></h3><p><strong>Input converters</strong> are very important, because how do you support all the variety of types? For example, I&#x27;ve written a method: </p><pre class="prettyprint">@Command
+public void computeFrequencies(StringBuilder text, int eqClass) {
+    for (int i = 0; i &lt;= text.length() - frameSize; i++) {
+        frequencies.put(eqClass, text.substring(i, i+frameSize));
+    }
+}</pre><p>But I can&#x27;t call it since the Shell doesn&#x27;t know what is that strange <tt>StringBuilder</tt> thing and says it doesn&#x27;t know how to convert string to it. But StringBuilder itself is kind of string! </p><p>Let&#x27;s explain it to Shell: </p><pre class="prettyprint">public static final InputConverter[] CLI_INPUT_CONVERTERS = {
+    new InputConverter() {
+        public Object convertInput(String original, Class toClass)
+                throws Exception {
+
+            if (toClass.equals(StringBuilder.class)) {
+                return new StringBuilder(original);
+            } else {
+                return null;
+            }
+        }
+    },
+};</pre><p>We declare a public field named <tt>CLI_INPUT_CONVERTERS</tt> which contains all necessary converters. As you can see, there are few rules to obey: </p><ol><li>Type of the field must be asg.cliche.InputConverter<a href=""></a>; </li><li>name of the field must start with reserved string <tt>CLI_INPUT_CONVERTERS</tt> (yes, we could name it </li></ol><p><tt>CLI_INPUT_CONVERTERS_FOR_StringBuilder</tt>); <ol><li>the field must be <tt>public</tt>, other modifiers aren&#x27;t important; </li><li>Converter returns <tt>null</tt> when required conversion is not his business. </li></ol></p><p>It is possible to perform all necessary custom conversions in one big <tt>InputConverter</tt> but I recommend that you place them in separate converter instances. </p><p><strong>Output conversions</strong> are useful if you don&#x27;t like object&#x27;s default <tt>toString()</tt> behavior. Or, alternatively, you might want those integers be printed not as <tt>13</tt>, but rather as <tt>Thirteen</tt>... </p><p>The way of declaring them is similar to input converters: </p><pre class="prettyprint">public static final OutputConverter[] CLI_OUTPUT_CONVERTERS = {
+    new OutputConverter() { // to make a text from strings
+        public Object convertOutput(Object toBeFormatted) {
+            if (toBeFormatted instanceof String[]) {
+                return StringUtils.join((String[])toBeFormatted, &quot; &quot;);
+            } else {
+                return null;
+            }
+        }
+    }
+};</pre><p>Here you have the same rules, but you may return not necessary <tt>String</tt> but any other object which will be formatted according to usual rules. For example, if you need to output some weird custom collection you may convert it to an array and Shell (in fact, <tt>OutputConversionEngine</tt>) will format it well. </p><p>One thing to remember is that all custom output converters are applied to all objects to be output, <i>the order of application being the reverse of that of the array.</i> </p><h3><a name="Special_commands"></a>Special commands<a href="#Special_commands" class="section_anchor"></a></h3><p>There are some quite useful builtin commands. </p><ul><li><tt>!run-script filename</tt> reads and executes commands from given file. </li><li><tt>!set-display-time true/false</tt> toggles displaying of command execution time. Time is shown in </li></ul><p>milliseconds and includes only your method&#x27;s physical time. <ul><li><tt>!enable-logging filename</tt> and <tt>!disable-logging</tt> control logging, i.e. duplication of all </li></ul>Shell&#x27;s input and output in a file. </p><p>You already know how to use the builtin help system to get more details, aren&#x27;t you? </p><h3><a name="Aux_handlers"></a>Aux handlers<a href="#Aux_handlers" class="section_anchor"></a></h3><p>As of cliche-3 release, the Shell allows so-called &#x27;aux handlers&#x27; to be specified in construction. These are extension objects that act like ordinary command handlers (with optional prefixes), except that they all are inherited by subshells. You can use this functionality, for instance, to make some commands global, or to collect all I/O converters in one place: </p><pre class="prettyprint">// MainEnvironment.java
+
+private MultiMap&lt;String, Object&gt; cliAuxHandlers = new ArrayHashMultiMap&lt;String, Object&gt;();
+
+// instance initializer
+{
+	cliAuxHandlers.put(&quot;MainEnvironment-&quot;, new CliUtils()); // CliUtils contains a bunch of converters and no commands
+	cliAuxHandlers.put(&quot;gv-&quot;, new GraphVisualizer());       // GV allows to adjust some global options
+}
+
+public static void main(String[] args) throws IOException {
+	MainEnvironment env = new MainEnvironment();
+	ShellFactory.createConsoleShell(&quot;LCA&quot;, &quot;&quot;, env, env.cliAuxHandlers)
+		.commandLoop();
+}	</pre><h3><a name="Conclusion"></a>Conclusion<a href="#Conclusion" class="section_anchor"></a></h3><p>There&#x27;re certainly some undisclosed aspects of this piece of software, but even this detalization is more then necessary. The &quot;Simplest usage&quot; section is enough very frequently. And nobody likes long manuals. Although almost everybody writes :) </p>
+ </div>
+ </div>
+ </td><tr>
+</table>
+ </div>
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+ 
+
+
+
+ 
+
+ 
+
+
+ 
+ 
+
+ 
+ 
+
+
+ 
+ </body>
+</html>
+
+

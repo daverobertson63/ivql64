@@ -1,0 +1,90 @@
+
+
+Version:	3.8
+CmdLine:	C:\Users\admin\git\veevavault\run\vql64.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\admin\git\veevavault\run\.
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.6
+Ignore:		1.6
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.6.0_45
+Ignore:		1.6.0_45
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_72
+Check launcher:	C:\Program Files\Java\jdk1.7.0_72\jre\bin\javaw.exe (OK)
+Match:		1.7.0_72
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_11
+Check launcher:	C:\PROGRA~1\Java\JDK18~1.0_1\jre\bin\javaw.exe (OK)
+Match:		1.8.0_11
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_20
+Check launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe (OK)
+Match:		1.8.0_20
+Runtime used:	1.8.0_20 (64-bit)
+Launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe
+Launcher args:	-jar "C:\Users\admin\git\veevavault\run\vql64.exe"
+Args length:	50/32768 chars
+Exit code:	0
+
+
+Version:	3.8
+CmdLine:	C:\Users\admin\git\veevavault\run\vql64.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\admin\git\veevavault\run\.
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.6
+Ignore:		1.6
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.6.0_45
+Ignore:		1.6.0_45
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_72
+Check launcher:	C:\Program Files\Java\jdk1.7.0_72\jre\bin\javaw.exe (OK)
+Match:		1.7.0_72
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_11
+Check launcher:	C:\PROGRA~1\Java\JDK18~1.0_1\jre\bin\javaw.exe (OK)
+Match:		1.8.0_11
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_20
+Check launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe (OK)
+Match:		1.8.0_20
+Runtime used:	1.8.0_20 (64-bit)
+Launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe
+Launcher args:	-jar "C:\Users\admin\git\veevavault\run\vql64.exe"
+Args length:	50/32768 chars
+Exit code:	0
+
+
+Version:	3.8
+CmdLine:	C:\Users\admin\git\veevavault\run\vql64.exe --l4j-debug
+WOW64:		yes
+Working dir:	C:\Users\admin\git\veevavault\run\.
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.6
+Ignore:		1.6
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.6.0_45
+Ignore:		1.6.0_45
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7
+Ignore:		1.7
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.7.0_72
+Check launcher:	C:\Program Files\Java\jdk1.7.0_72\jre\bin\javaw.exe (OK)
+Match:		1.7.0_72
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Check launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe (OK)
+Match:		1.8
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_11
+Check launcher:	C:\PROGRA~1\Java\JDK18~1.0_1\jre\bin\javaw.exe (OK)
+Match:		1.8.0_11
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_20
+Check launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe (OK)
+Match:		1.8.0_20
+Runtime used:	1.8.0_20 (64-bit)
+Launcher:	C:\Program Files\Java\jdk1.8.0_20\jre\bin\javaw.exe
+Launcher args:	-jar "C:\Users\admin\git\veevavault\run\vql64.exe"
+Args length:	50/32768 chars
+Exit code:	0

@@ -1,0 +1,11 @@
+id,name__v,type__v
+10,Planned,Nonclinical
+9,Pharmacology Tabulated Summary,Nonclinical
+8,Pharmacology Written Summary,Nonclinical
+7,Introduction,Nonclinical
+6,Clinical Overview,Clinical
+5,Nonclinical Overview,Nonclinical
+4,Quality Overall Summary,Quality
+3,Example,Pharmacovigilance
+2,Cover Letter,Regulatory
+1,Example Submission Structure,Submissions
