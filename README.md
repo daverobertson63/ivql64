@@ -1,29 +1,42 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is a simple front end to the Veeva Vault using Java.  Its similar in approach to the Documentum idql32 - command line app 
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* You can enter veevsa type VQL and get a formatted response
+* 1.0
+
 
 ### How do I get set up? ###
 
 * Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
 
-### Contribution guidelines ###
+I have created launch4j version in the run dir - but to run  this use
 
-* Writing tests
-* Code review
-* Other guidelines
+java -jar run/vql64.jar or
 
-### Who do I talk to? ###
+ivql64.exe
 
-* Repo owner or admin
-* Other community or team contact
+There is a simple XML settings file wher you can store the username and password
+
+* Commands
+
+To login - use auth username password
+
+To see which vaults you have access to 
+
+vaults
+
+To execute a VQL
+
+query VQL
+
+To list all documents
+
+documents
+
+To get help on the command line use ?list
+
+
+
