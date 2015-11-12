@@ -57,7 +57,7 @@ public class VeevaConnect {
 		
 		try{
 						
-			ShellFactory.createConsoleShell("ivql", "", new VeevaCommandLine()).commandLoop();
+			ShellFactory.createConsoleShell("ivql", "ivql64", new VeevaCommandLine()).commandLoop();
 
 		}
 		catch(Exception e)
