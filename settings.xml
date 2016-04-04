@@ -5,5 +5,6 @@
 <entry key="password">xxx</entry>
 <entry key="csvFile">veeva.csv</entry>
 <entry key="userName">xxx</entry>
+<entry key="url">https://sb-roche-submissions.veevavault.com/api/auth?username=</entry>
 <entry key="documents">SELECT id, name__v, type__v FROM documents</entry>
 </properties>

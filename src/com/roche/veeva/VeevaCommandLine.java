@@ -156,7 +156,7 @@ public class VeevaCommandLine {
 		try {
 
 			// build the auth string and just go for it.
-			HttpPost httpPost = new HttpPost("https://sb-roche-submissions.veevavault.com/api/auth?username=" + username + "&password=" + password);
+			HttpPost httpPost = new HttpPost(Globals.url + username + "&password=" + password);
 
 			// This is not required as you put them on the command line... but... would be nice :)
 			List <NameValuePair> nvps = new ArrayList <NameValuePair>();
@@ -215,6 +215,7 @@ public class VeevaCommandLine {
 				System.out.println("Vaults available");
 			}
 			
+			// Look the vaults and look for available https endpoints we can use for API
 			for (int i = 0; i < vaults.length(); i++) {
 
 				JSONObject objects = vaults.getJSONObject(i);
@@ -270,10 +271,15 @@ public class VeevaCommandLine {
 	Properties loadVeevaProps = new Properties();
 	 
 	 try {
+		 
 		 loadVeevaProps.loadFromXML(new FileInputStream("settings.xml"));
+		 
 		 Globals.csvFile = loadVeevaProps.getProperty("csvFile","veeva.csv");
 		 Globals.userName = loadVeevaProps.getProperty("userName","default");
 		 Globals.password = loadVeevaProps.getProperty("password","default");
+		 
+		 Globals.url = loadVeevaProps.getProperty("url","default");
+		 
 		 Globals.documents = loadVeevaProps.getProperty("documents","SELECT id, name__v, type__v FROM documents");
 		 
 		 //System.out.println(Globals.userName);

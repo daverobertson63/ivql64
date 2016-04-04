@@ -1,4 +1,14 @@
 id,name__v,type__v
+22,IDM Solution Architecture - Data Model Tooling Platform,Clinical
+21,Planned,Nonclinical
+20,Pharmacology Tabulated Summary,Nonclinical
+19,Pharmacology Written Summary,Nonclinical
+18,Introduction,Nonclinical
+17,Clinical Overview,Clinical
+16,Nonclinical Overview,Nonclinical
+15,Quality Overall Summary,Quality
+14,Example,Pharmacovigilance
+13,Cover Letter,Regulatory
 11,test,Clinical
 10,Planned,Nonclinical
 9,Pharmacology Tabulated Summary,Nonclinical

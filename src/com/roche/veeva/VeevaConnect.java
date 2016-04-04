@@ -41,7 +41,11 @@ public class VeevaConnect {
 			 loadVeevaProps.loadFromXML(new FileInputStream("settings.xml"));
 			 Globals.csvFile = loadVeevaProps.getProperty("csvFile","veeva.csv");
 			 Globals.userName = loadVeevaProps.getProperty("userName","default");
+			 
+			 Globals.url = loadVeevaProps.getProperty("url","default");
+			 
 			 Globals.password = loadVeevaProps.getProperty("password","default");
+			 
 			 Globals.documents = loadVeevaProps.getProperty("documents","SELECT id, name__v, type__v FROM documents");
 			 
 			 //System.out.println(Globals.userName);

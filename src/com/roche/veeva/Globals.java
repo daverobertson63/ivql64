@@ -12,7 +12,8 @@ public class Globals {
 	    public static String userName;
 	    public static String password;
 	    public static String documents;
-	    
+
+	    public static String url;
 	}
 	
 
